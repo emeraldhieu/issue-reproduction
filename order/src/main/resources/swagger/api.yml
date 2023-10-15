@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: Order - OpenAPI 3.0
+  description: Order API that manages shopping orders.
+  version: 1.0.11
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: Orders
+    description: Everything about order
+paths:
+  /orders:
+    post:
+      tags:
+        - Orders
+      summary: Create a new order
+      description: POST /orders
+      operationId: createOrder
+      requestBody:
+        description: Create a new order
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+        required: true
+      responses:
+        '201':
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+components:
+  schemas:
+    OrderRequest:
+      type: object
+      required:
+        - products
+      properties:
+        products:
+          type: array
+          items:
+            type: string
+          example: [ "pizza", "burger", "spaghetti" ]
+          x-field-extra-annotation: "@NotNull"
+    OrderResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ["c611d780541541f69c1e1e80b966527a"]
+        products:
+          type: array
+          items:
+            type: string
+          example: [ "pizza", "burger", "spaghetti" ]
+        createdBy:
+          type: string
+          example: ["8b6469bbf2bb44c0aacc3ce43764e8d4"]
+        createdAt:
+          type: string
+          format: date-time
+          example: '2022-11-27T01:02:03Z'
+        updatedBy:
+          type: string
+          example: ["b95d5cd67a71450b853a188529b68a47"]
+        updatedAt:
+          type: string
+          format: date-time
+          example: '2022-11-28T04:05:06Z'
+    OrderResponseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/OrderResponse'
