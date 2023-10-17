@@ -34,6 +34,8 @@
         <springDocOpenApiStarterWebMvcUiVersion>2.0.0</springDocOpenApiStarterWebMvcUiVersion>
         <graphQlDgsPlatformDependenciesVersion>7.6.0</graphQlDgsPlatformDependenciesVersion>
         <graphqlCodeGenMavenPluginVersion>1.24</graphqlCodeGenMavenPluginVersion>
+
+        <graphql-java.version>20.6</graphql-java.version>
     </properties>
 
     <dependencyManagement>
